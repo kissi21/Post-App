@@ -100,14 +100,18 @@ export default async function Home({
   const totalPosts = publishedPosts.length + draftPosts.length;
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
       <main className="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-8 px-4 py-10 sm:px-8">
-        <header className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.08)] sm:flex sm:items-center sm:justify-between sm:p-8">
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-600/90">Posts App</p>
-            <h1 className="text-2xl font-semibold tracking-tight text-slate-950 sm:text-3xl">
-              A clean light dashboard for posts and drafts
+        <header className="relative overflow-hidden rounded-[32px] border border-slate-700 bg-slate-950/90 p-6 shadow-[0_40px_120px_-50px_rgba(8,15,34,0.75)] sm:flex sm:items-center sm:justify-between sm:p-8">
+          <div className="crypto-chart-overlay pointer-events-none absolute inset-0 rounded-[32px]" />
+          <div className="space-y-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-400/80">Crypto Trade Desk</p>
+            <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              Strategy notes for crypto traders with live signal tracking
             </h1>
+            <p className="max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+              Capture trade ideas, publish winning setups, and review your market commentary in one sleek crypto dashboard.
+            </p>
           </div>
           <nav className="mt-4 flex flex-wrap gap-3 sm:mt-0">
             {tabs.map((tab) => (
@@ -115,9 +119,9 @@ export default async function Home({
                 key={tab.value}
                 href={`/?view=${tab.value}`}
                 className={`rounded-3xl px-4 py-2 text-sm font-semibold transition ${
-                  view === tab.value
-                    ? "bg-sky-600 text-white"
-                    : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  selectedView === tab.value
+                    ? "bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 shadow-[0_10px_30px_-10px_rgba(16,185,129,0.7)]"
+                    : "bg-slate-800 text-slate-300 hover:bg-slate-700"
                 }`}
               >
                 {tab.label}
@@ -126,17 +130,16 @@ export default async function Home({
           </nav>
         </header>
 
-        <section className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-[0_30px_60px_-30px_rgba(15,23,42,0.08)] sm:p-10">
+        <section className="rounded-[32px] border border-slate-800 bg-slate-900/95 p-8 shadow-[0_30px_60px_-30px_rgba(14,165,233,0.18)] sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[1.3fr_0.7fr] lg:items-center">
             <div className="space-y-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-600/90">Posts App</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-300/80">Market Pulse</p>
               <div className="space-y-3">
-                <h1 className="text-4xl font-semibold tracking-tight text-slate-950 sm:text-5xl">
-                  Build and manage posts with a modern light dashboard
+                <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+                  Manage trade ideas, watchlists, and published strategies
                 </h1>
-                <p className="max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">
-                  Create drafts, publish posts, and store content with Prisma and MySQL.
-                  This app now reads from and writes to your SQL database.
+                <p className="max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
+                  Store your crypto trade insights in a secure MySQL-backed dashboard and publish the setups you want to track.
                 </p>
               </div>
               {dbError && (
@@ -146,28 +149,28 @@ export default async function Home({
                 </div>
               )}
               <div className="grid gap-3 sm:grid-cols-3">
-                <div className="rounded-3xl border border-sky-200 bg-sky-50 p-5">
-                  <p className="text-sm uppercase tracking-[0.25em] text-sky-600/80">Published</p>
-                  <p className="mt-2 text-3xl font-semibold text-slate-950">{publishedPosts.length}</p>
+                <div className="rounded-3xl border border-emerald-500/20 bg-slate-900/80 p-5 shadow-[0_10px_30px_-15px_rgba(16,185,129,0.35)]">
+                  <p className="text-sm uppercase tracking-[0.25em] text-emerald-300">Open ideas</p>
+                  <p className="mt-2 text-3xl font-semibold text-white">{publishedPosts.length}</p>
                 </div>
-                <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-                  <p className="text-sm uppercase tracking-[0.25em] text-slate-500">Drafts</p>
-                  <p className="mt-2 text-3xl font-semibold text-slate-950">{draftPosts.length}</p>
+                <div className="rounded-3xl border border-slate-700/80 bg-slate-900/80 p-5 shadow-[0_10px_30px_-15px_rgba(107,114,128,0.25)]">
+                  <p className="text-sm uppercase tracking-[0.25em] text-slate-400">Draft signals</p>
+                  <p className="mt-2 text-3xl font-semibold text-white">{draftPosts.length}</p>
                 </div>
-                <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-                  <p className="text-sm uppercase tracking-[0.25em] text-slate-500">Total posts</p>
-                  <p className="mt-2 text-3xl font-semibold text-slate-950">{totalPosts}</p>
+                <div className="rounded-3xl border border-sky-500/20 bg-slate-900/80 p-5 shadow-[0_10px_30px_-15px_rgba(14,165,233,0.25)]">
+                  <p className="text-sm uppercase tracking-[0.25em] text-sky-300">Total ideas</p>
+                  <p className="mt-2 text-3xl font-semibold text-white">{totalPosts}</p>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 rounded-[28px] bg-gradient-to-br from-sky-50 via-white to-slate-50 p-6 shadow-[0_20px_80px_-40px_rgba(14,165,233,0.12)]">
+            <div className="flex flex-col gap-4 rounded-[28px] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-900 p-6 shadow-[0_20px_80px_-40px_rgba(14,165,233,0.18)] ring-1 ring-slate-700/80">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-600/90">Quick start</p>
-                <h2 className="mt-3 text-2xl font-semibold text-slate-950">Use the tab controls</h2>
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-300/80">Quick start</p>
+                <h2 className="mt-3 text-2xl font-semibold text-white">Crypto workflow guide</h2>
               </div>
-              <p className="text-sm leading-6 text-slate-600">
-                Switch views to see published posts, drafts, or add a new post directly into your database.
+              <p className="text-sm leading-6 text-slate-300">
+                Switch views to review live ideas, manage drafts, or add a new trade setup straight into your strategy log.
               </p>
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {tabs.map((tab) => (
@@ -176,8 +179,8 @@ export default async function Home({
                     href={`/?view=${tab.value}`}
                     className={`rounded-3xl px-4 py-3 text-sm font-semibold transition ${
                       selectedView === tab.value
-                        ? "bg-sky-600 text-white"
-                        : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                        ? "bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 shadow-[0_15px_40px_-30px_rgba(16,185,129,0.8)]"
+                        : "bg-slate-800 text-slate-300 hover:bg-slate-700"
                     }`}
                   >
                     {tab.label}
@@ -193,25 +196,25 @@ export default async function Home({
             {selectedView === "posts" && (
               <div className="space-y-6">
                 {publishedPosts.length === 0 ? (
-                  <div className="rounded-3xl border border-dashed border-slate-200 bg-slate-50 p-10 text-center text-slate-500">
-                    No published posts found.
+                  <div className="rounded-3xl border border-dashed border-slate-700 bg-slate-950/80 p-10 text-center text-slate-400">
+                    No published trade ideas found.
                   </div>
                 ) : (
                   publishedPosts.map((post) => (
                     <article
                       key={post.id}
-                      className="rounded-3xl border border-slate-200 bg-white p-8 shadow-[0_10px_30px_-15px_rgba(15,23,42,0.08)]"
+                      className="rounded-[32px] border border-slate-700 bg-slate-950/95 p-8 shadow-[0_20px_80px_-40px_rgba(14,165,233,0.35)]"
                     >
                       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                         <div>
-                          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-600/80">Published</p>
-                          <h2 className="mt-3 text-2xl font-semibold text-slate-950">{post.title}</h2>
+                          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-300/80">Published signal</p>
+                          <h2 className="mt-3 text-2xl font-semibold text-white">{post.title}</h2>
                         </div>
-                        <span className="rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-sky-700">
+                        <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200 ring-1 ring-emerald-500/20">
                           Live
                         </span>
                       </div>
-                      <p className="mt-6 whitespace-pre-wrap text-slate-600">{post.content ?? "No description added yet."}</p>
+                      <p className="mt-6 whitespace-pre-wrap text-slate-300">{post.content ?? "No description added yet."}</p>
                     </article>
                   ))
                 )}
@@ -263,41 +266,41 @@ export default async function Home({
             )}
 
             {selectedView === "add" && (
-              <article className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-[0_10px_30px_-15px_rgba(15,23,42,0.06)]">
+              <article className="rounded-[32px] border border-slate-800 bg-slate-950/95 p-8 shadow-[0_20px_80px_-40px_rgba(14,165,233,0.18)]">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-600/80">Add Post</p>
-                    <h2 className="mt-3 text-3xl font-semibold text-slate-950">Create a new draft</h2>
+                    <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-300/80">Add Idea</p>
+                    <h2 className="mt-3 text-3xl font-semibold text-white">Create a new trade signal</h2>
                   </div>
-                  <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-600">
+                  <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200 ring-1 ring-emerald-500/20">
                     Draft mode
                   </span>
                 </div>
                 <form action={addPost} className="mt-8 space-y-6">
                   <div className="space-y-3">
-                    <label className="block text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Title</label>
+                    <label className="block text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Title</label>
                     <input
                       name="title"
                       type="text"
                       required
-                      placeholder="Working with databases in Next.js using Prisma"
-                      className="w-full rounded-3xl border border-slate-200 bg-white px-5 py-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
+                      placeholder="BTC bull breakout on the daily"
+                      className="w-full rounded-3xl border border-slate-700 bg-slate-950 px-5 py-4 text-base text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20"
                     />
                   </div>
                   <div className="space-y-3">
-                    <label className="block text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Content</label>
+                    <label className="block text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Content</label>
                     <textarea
                       name="content"
                       rows={8}
-                      placeholder="Next.js is a database-agnostic web-based framework..."
-                      className="w-full rounded-[28px] border border-slate-200 bg-white px-5 py-4 text-base text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
+                      placeholder="Describe the trade plan, support/resistance levels, and risk management."
+                      className="w-full rounded-[28px] border border-slate-700 bg-slate-950 px-5 py-4 text-base text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="inline-flex rounded-full bg-sky-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-700"
+                    className="inline-flex rounded-full bg-emerald-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
                   >
-                    Add Post
+                    Save Signal
                   </button>
                 </form>
               </article>

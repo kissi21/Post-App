@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#04101f" />
+      <stop offset="100%" stop-color="#081623" />
+    </linearGradient>
+    <linearGradient id="coinGlow" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffe27a" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#f4b116" stop-opacity="0.1" />
+    </linearGradient>
+    <radialGradient id="coinLight" cx="0.35" cy="0.35" r="0.7">
+      <stop offset="0%" stop-color="#fff5cc" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#e8b32e" stop-opacity="0.15" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bgGrad)" />
+  <rect x="0" y="0" width="1600" height="900" fill="url(#grid)" opacity="0.12" />
+
+  <g opacity="0.15">
+    <path d="M160 420c40-90 140-170 250-160s190 100 240 120 190-20 250-60 150-120 290-100 210 90 260 150 120 190 40 230-200 35-260 0-120-160-250-180-260 20-320 70-120 140-220 140-190-110-160-220Z" fill="#66d4ff" />
+    <path d="M1400 160c-110 10-200 90-210 190s70 200 170 220 210 20 260-60 30-200-70-250-130-80-150-100Z" fill="#10b981" />
+  </g>
+
+  <rect x="0" y="0" width="1600" height="900" fill="url(#coinGlow)" opacity="0.12" />
+
+  <g transform="translate(450 260)">
+    <circle cx="350" cy="190" r="150" fill="#f9c33b" />
+    <circle cx="350" cy="190" r="136" fill="url(#coinLight)" />
+    <circle cx="350" cy="190" r="120" fill="none" stroke="#fad97f" stroke-width="12" opacity="0.75" />
+    <path d="M302 210h96M320 165h40M335 250h30" stroke="#7a4f0a" stroke-width="14" stroke-linecap="round" />
+    <path d="M350 110v160" stroke="#7a4f0a" stroke-width="18" />
+    <path d="M245 205h-48a20 20 0 0 1-20-20v-14a20 20 0 0 1 20-20h48" fill="none" stroke="#7a4f0a" stroke-width="14" />
+    <path d="M453 205h48a20 20 0 0 0 20-20v-14a20 20 0 0 0-20-20h-48" fill="none" stroke="#7a4f0a" stroke-width="14" />
+    <circle cx="350" cy="190" r="96" fill="none" stroke="#fad97f" stroke-width="6" opacity="0.5" />
+  </g>
+
+  <g stroke="#2dd4bf" stroke-width="10" stroke-linecap="round" opacity="0.8">
+    <path d="M180 240h220" />
+    <path d="M180 260h140" />
+    <path d="M180 280h90" />
+    <path d="M1180 460h240" />
+    <path d="M1180 480h180" />
+    <path d="M1180 500h100" />
+    <path d="M400 150h220" />
+    <path d="M420 130v120" />
+    <path d="M560 130v120" />
+    <path d="M1000 600h220" />
+    <path d="M1020 620v90" />
+    <path d="M1240 620v90" />
+  </g>
+
+  <g opacity="0.1" fill="#54b4ff">
+    <path d="M1200 160c-60 18-88 66-88 118s26 116 88 124 116-30 124-80 0-88-26-118-62-44-98-44Z" />
+    <path d="M230 620c70 10 134-16 168-70s30-122-26-170-132-60-194-32-86 106-66 170 84 118 118 102Z" />
+  </g>
+
+  <path d="M120 780h1360" stroke="rgba(255,255,255,0.08)" stroke-width="3" />
+  <path d="M120 720h1360" stroke="rgba(255,255,255,0.05)" stroke-width="2" />
+  <path d="M120 660h1360" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+</svg>

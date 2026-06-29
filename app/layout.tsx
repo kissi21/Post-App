@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Posts App",
-  description: "A stylish posts app built with Next.js and Prisma",
+  title: "Crypto Trade Desk",
+  description: "A crypto trading dashboard built with Next.js, Prisma, and MySQL",
 };
 
 export default function RootLayout({

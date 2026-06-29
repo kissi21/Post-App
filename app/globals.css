@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -12,10 +12,16 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  background: radial-gradient(circle at top, rgba(56,189,248,0.12), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(14,165,233,0.08), transparent 22%),
-    #f8fafc;
-  color: #0f172a;
+  background-color: #04080f;
+  background-image:
+    url("/crypto-bg.svg"),
+    radial-gradient(circle at 18% 12%, rgba(14,165,233,0.24), transparent 18%),
+    radial-gradient(circle at 82% 18%, rgba(16,185,129,0.16), transparent 16%),
+    linear-gradient(180deg, rgba(6,12,24,0.98) 0%, rgba(8,16,32,0.98) 35%, rgba(12,24,40,0.98) 100%);
+  background-size: cover, auto, auto, auto;
+  background-position: center, top left, top right, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  color: #e2e8f0;
 }
 
 * {
@@ -23,13 +29,13 @@ body {
 }
 
 ::selection {
-  background: rgba(56,189,248,0.25);
-  color: #0f172a;
+  background: rgba(16,185,129,0.28);
+  color: #020617;
 }
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: #07101a;
+  --foreground: #e2e8f0;
 }
 
 @theme inline {
@@ -40,15 +46,50 @@ body {
 }
 
 body {
-  background: radial-gradient(circle at top, rgba(56,189,248,0.12), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(14,165,233,0.08), transparent 22%),
+  background: radial-gradient(circle at top left, rgba(14,165,233,0.18), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(16,185,129,0.14), transparent 22%),
     var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.crypto-chart-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(135deg, rgba(16,185,129,0.14) 2%, transparent 10%),
+    linear-gradient(145deg, rgba(56,189,248,0.18) 1px, transparent 1px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 24px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 20px);
+  background-size: 180% 120%, 100% 100%, 100% 24px, 24px 100%;
+  opacity: 0.22;
+  animation: market-glow 16s linear infinite;
+  mask-image: radial-gradient(circle at 50% 30%, rgba(0,0,0,0.9), transparent 78%);
+}
+
+@keyframes market-glow {
+  from {
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  to {
+    background-position: -200px 0, 0 0, 0 0, 0 0;
+  }
 }
 
 button,
 input,
 textarea {
   font: inherit;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle at 20% 10%, rgba(14,165,233,0.16), transparent 20%),
+    radial-gradient(circle at 80% 18%, rgba(16,185,129,0.12), transparent 16%),
+    repeating-linear-gradient(0deg, transparent 0, transparent 12px, rgba(255,255,255,0.02) 12px, rgba(255,255,255,0.02) 13px);
+  pointer-events: none;
+  opacity: 0.55;
+  z-index: -1;
 }
